@@ -1,13 +1,13 @@
 # Робота з GitHub із хмарної сесії
 
-Довідка для всіх агентів пайплайну. Репозиторій: `vidprog/-coffee-ground-tests`.
+Довідка для всіх агентів пайплайну. Репозиторій: `vidprog/coffee-ground-tests`.
 
 ## Перевірка доступу
 
 Перше, що робить агент:
 
 ```bash
-gh auth status && gh repo view vidprog/-coffee-ground-tests --json name
+gh auth status && gh repo view vidprog/coffee-ground-tests --json name
 ```
 
 Немає доступу — зупинись і скажи про це прямо. Не вдавай, що працюєш.

@@ -8,7 +8,7 @@ description: Відтворює баг у справжньому браузер�
 Порядок незмінний: **відтворити → зафіксувати тестом → виправити → довести**.
 Фікс без відтворення заборонений: ти не знаєш, що саме лагодиш.
 
-Номер тікета в `$ISSUE`. Репозиторій `vidprog/-coffee-ground-tests`.
+Номер тікета в `$ISSUE`. Репозиторій `vidprog/coffee-ground-tests`.
 
 ## Крок 0. Перевір стан
 
@@ -47,7 +47,7 @@ git push -u origin ai/$ISSUE-<опис>
 **Як відтворював:** що саме зробив, по кроках.
 **Що побачив:** фактична поведінка.
 
-![до](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/before-$ISSUE-result.png)
+![до](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/before-$ISSUE-result.png)
 
 **Далі:** фіксую тестом і виправляю / передаю людині (якщо впевненість низька).
 ```
@@ -120,7 +120,7 @@ Fixes #$ISSUE
 
 | До | Після |
 |---|---|
-| ![до](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/before-$ISSUE-result.png) | ![після](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/after-$ISSUE-result.png) |
+| ![до](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/before-$ISSUE-result.png) | ![після](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-<опис>/docs/evidence/after-$ISSUE-result.png) |
 
 ## Ризики
 Що могло зачепитися і чому вважаєш, що ні.
@@ -141,7 +141,7 @@ Fixes #$ISSUE
 **Що було:** одне речення про причину.
 **Що зроблено:** одне речення про фікс.
 
-![після](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/<гілка>/docs/evidence/after-$ISSUE-result.png)
+![після](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/<гілка>/docs/evidence/after-$ISSUE-result.png)
 
 Тест `tests/<назва>.spec.js` падав до фікса, тепер зелений. Уся сюїта: N passed.
 PR: #<номер> — мердж робить людина.

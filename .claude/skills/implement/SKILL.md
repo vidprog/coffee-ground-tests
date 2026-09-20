@@ -69,7 +69,7 @@ Fixes #$ISSUE
 ## Докази
 | Десктоп | Мобільний |
 |---|---|
-| ![десктоп](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/<гілка>/docs/evidence/feature-$ISSUE-result.png) | ![мобільний](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/<гілка>/docs/evidence/feature-$ISSUE-result-mobile.png) |
+| ![десктоп](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/<гілка>/docs/evidence/feature-$ISSUE-result.png) | ![мобільний](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/<гілка>/docs/evidence/feature-$ISSUE-result-mobile.png) |
 
 Уся сюїта: N passed.
 

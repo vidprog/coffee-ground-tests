@@ -62,7 +62,7 @@ git worktree remove /tmp/mockup-$ISSUE
 Worktree — щоб не тягнути за собою незакомічені зміни з робочої гілки.
 
 Посилання в коментарі:
-`https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home.png`
+`https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home.png`
 
 **Макет мусить бути чесним.** Це накладення на справжню верстку справжнього проєкту,
 тож він показує реальні пропорції, шрифти й поведінку на 360px. Якщо домальовуєш те,
@@ -86,7 +86,7 @@ Worktree — щоб не тягнути за собою незакомічені
 
 | Десктоп | 360px |
 |---|---|
-| ![десктоп](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home.png) | ![мобільний](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home-mobile.png) |
+| ![десктоп](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home.png) | ![мобільний](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ai/$ISSUE-spec-mockup/docs/evidence/spec-$ISSUE-home-mobile.png) |
 
 Під картинками — один рядок про те, що саме на них видно і що домальовано.
 
@@ -121,7 +121,7 @@ Worktree — щоб не тягнути за собою незакомічені
 ## Крок 4. Постав лейбли
 
 ```bash
-gh issue edit $ISSUE -R vidprog/-coffee-ground-tests \
+gh issue edit $ISSUE -R vidprog/coffee-ground-tests \
   --add-label "spec:ready" --remove-label "ai:in-progress"
 ```
 

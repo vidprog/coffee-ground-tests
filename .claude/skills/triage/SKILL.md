@@ -7,7 +7,7 @@ description: Класифікує новий тікет (баг / фіча / і�
 
 Ти перший агент у пайплайні. Твоя робота — **класифікувати й перевірити повноту**, не виправляти.
 
-Номер тікета в змінній `$ISSUE`. Репозиторій: `vidprog/-coffee-ground-tests`.
+Номер тікета в змінній `$ISSUE`. Репозиторій: `vidprog/coffee-ground-tests`.
 
 ## Крок 0. Перевір, чи треба працювати
 
@@ -61,7 +61,7 @@ gh issue view $ISSUE --json number,title,body,labels,author,state
 ## Крок 3. Пошукай дублікати
 
 ```bash
-gh issue list -R vidprog/-coffee-ground-tests --state all --limit 50 --json number,title,state
+gh issue list -R vidprog/coffee-ground-tests --state all --limit 50 --json number,title,state
 ```
 
 Схожий тікет — згадай його в коментарі («схоже на #7»), але **не закривай** нічого сам.
@@ -93,7 +93,7 @@ gh issue list -R vidprog/-coffee-ground-tests --state all --limit 50 --json numb
 ## Крок 6. Постав лейбли
 
 ```bash
-gh issue edit $ISSUE -R vidprog/-coffee-ground-tests \
+gh issue edit $ISSUE -R vidprog/coffee-ground-tests \
   --add-label "type:bug,ai:triaged" --remove-label "ai:in-progress"
 ```
 

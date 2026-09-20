@@ -52,7 +52,7 @@ node scripts/evidence.mjs after-12 --focus       # підсвічує, де фо
 Тільки через raw-посилання на гілку:
 
 ```markdown
-![після](https://raw.githubusercontent.com/vidprog/-coffee-ground-tests/ГІЛКА/docs/evidence/after-12-result.png)
+![після](https://raw.githubusercontent.com/vidprog/coffee-ground-tests/ГІЛКА/docs/evidence/after-12-result.png)
 ```
 
 Артефакти GitHub Actions **не годяться** — їх не видно в коментарі, їх треба качати.

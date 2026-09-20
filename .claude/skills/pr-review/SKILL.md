@@ -82,7 +82,7 @@ gh pr checks $PR
 Постав лейбл на PR:
 
 ```bash
-gh pr edit $PR -R vidprog/-coffee-ground-tests --add-label "ai:reviewed"
+gh pr edit $PR -R vidprog/coffee-ground-tests --add-label "ai:reviewed"
 ```
 
 ## Правила рев'ю
