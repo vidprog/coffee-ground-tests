@@ -9,10 +9,65 @@
   --violet-glow:rgba(123,75,214,.45);
   --line:rgba(232,192,125,.28);
   --card:rgba(28,17,48,.72);
+  /* Фонові сяйва й туман */
+  --glow-1:#2a1550; --glow-2:#1b2a5c; --glow-3:#3a1240;
+  --fog-1:rgba(123,75,214,.20); --fog-2:rgba(232,192,125,.10);
+  /* Шапка */
+  --sigil-glow:rgba(232,192,125,.35);
+  --h1-from:#fff8ea; --h1-mid:var(--gold); --h1-to:#a9763a; --h1-halo:rgba(232,192,125,.18);
+  /* Картки */
+  --card-1:rgba(45,27,78,.85); --card-2:rgba(20,12,36,.9);
+  --card-line-inner:rgba(232,192,125,.14); --card-line-hover:rgba(232,192,125,.25);
+  --shadow-deep:#000;
+  /* Квіз */
+  --moon-glow:rgba(232,192,125,.6);
+  --q-ink:#fff8ea;
+  --option-bg:rgba(255,255,255,.035); --option-line:rgba(232,192,125,.18);
+  --option-hover-bg:rgba(123,75,214,.18); --option-picked-bg:rgba(232,192,125,.16);
+  /* Результат */
+  --orb-1:rgba(255,255,255,.35); --orb-2:rgba(123,75,214,.5); --orb-3:rgba(20,10,40,.9);
+  --orb-inner:rgba(255,255,255,.15);
+  --advice-bg:rgba(232,192,125,.05);
+  /* Кнопки й тост */
+  --btn-from:var(--gold-soft); --btn-to:var(--gold); --btn-ink:#2a1a06;
+  --btn-shadow:rgba(232,192,125,.7); --btn-shadow-hover:rgba(232,192,125,.85);
+  --toast-bg:rgba(28,17,48,.95); --toast-ink:var(--gold-soft);
+  /* Зорі на canvas — трійки RGB, бо app.js підставляє власну прозорість */
+  --star-gold:232,192,125; --star-pale:233,226,255;
   --radius:20px;
   --serif:"Cormorant Garamond",Georgia,serif;
   --display:"Marcellus SC","Cormorant Garamond",serif;
   --sans:"Manrope",system-ui,sans-serif;
+}
+:root[data-theme="light"]{
+  --bg:#f6efe2;
+  --bg-2:#efe3cf;
+  --ink:#2f2438;
+  --muted:#6b5c7d;
+  --gold:#8a6224;
+  --gold-soft:#a9763a;
+  --violet:#6a3fc0;
+  --violet-glow:rgba(106,63,192,.28);
+  --line:rgba(138,98,36,.35);
+  --card:rgba(255,252,247,.85);
+  --glow-1:#efe0f7; --glow-2:#e2e8f8; --glow-3:#f7e3ec;
+  --fog-1:rgba(106,63,192,.10); --fog-2:rgba(138,98,36,.08);
+  --sigil-glow:rgba(138,98,36,.25);
+  --h1-from:#a9763a; --h1-mid:#8a6224; --h1-to:#4a3110; --h1-halo:rgba(138,98,36,.10);
+  --card-1:rgba(255,252,247,.92); --card-2:rgba(246,238,226,.96);
+  --card-line-inner:rgba(138,98,36,.18); --card-line-hover:rgba(138,98,36,.3);
+  --shadow-deep:rgba(70,48,20,.45);
+  --moon-glow:rgba(138,98,36,.5);
+  --q-ink:#3f2a0c;
+  --option-bg:rgba(255,255,255,.6); --option-line:rgba(138,98,36,.25);
+  --option-hover-bg:rgba(106,63,192,.10); --option-picked-bg:rgba(138,98,36,.16);
+  --orb-1:rgba(255,255,255,.95); --orb-2:rgba(106,63,192,.35); --orb-3:rgba(206,188,226,.6);
+  --orb-inner:rgba(255,255,255,.5);
+  --advice-bg:rgba(138,98,36,.07);
+  --btn-ink:#fff8ea;
+  --btn-shadow:rgba(138,98,36,.6); --btn-shadow-hover:rgba(138,98,36,.75);
+  --toast-bg:rgba(255,252,247,.97); --toast-ink:#3f2a0c;
+  --star-gold:138,98,36; --star-pale:107,92,125;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -20,9 +75,9 @@ body{
   margin:0;min-height:100vh;color:var(--ink);
   font-family:var(--sans);font-weight:300;line-height:1.6;
   background:
-    radial-gradient(1200px 700px at 50% -10%,#2a1550 0%,transparent 60%),
-    radial-gradient(900px 600px at 110% 20%,#1b2a5c 0%,transparent 55%),
-    radial-gradient(800px 600px at -10% 80%,#3a1240 0%,transparent 55%),
+    radial-gradient(1200px 700px at 50% -10%,var(--glow-1) 0%,transparent 60%),
+    radial-gradient(900px 600px at 110% 20%,var(--glow-2) 0%,transparent 55%),
+    radial-gradient(800px 600px at -10% 80%,var(--glow-3) 0%,transparent 55%),
     linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 60%,var(--bg) 100%);
   background-repeat:no-repeat;
   /* після шортката, інакше він скидає колір у transparent і низ сторінки білий */
@@ -33,8 +88,8 @@ body{
 .fog{
   position:fixed;inset:-20%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(closest-side,rgba(123,75,214,.20),transparent 70%) 20% 30%/60% 60% no-repeat,
-    radial-gradient(closest-side,rgba(232,192,125,.10),transparent 70%) 80% 70%/55% 55% no-repeat;
+    radial-gradient(closest-side,var(--fog-1),transparent 70%) 20% 30%/60% 60% no-repeat,
+    radial-gradient(closest-side,var(--fog-2),transparent 70%) 80% 70%/55% 55% no-repeat;
   filter:blur(20px);animation:drift 28s ease-in-out infinite alternate;
 }
 @keyframes drift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(3%,2%,0) scale(1.08)}}
@@ -42,19 +97,19 @@ body{
 main,.site-head,footer{position:relative;z-index:1}
 
 /* ── Шапка ───────────────────────────────── */
-.site-head{max-width:760px;margin:0 auto;padding:56px 20px 8px;text-align:center}
+.site-head{position:relative;max-width:760px;margin:0 auto;padding:56px 20px 8px;text-align:center}
 .sigil{width:110px;height:110px;margin:0 auto 18px;animation:spin 60s linear infinite}
 .sigil svg{width:100%;height:100%;fill:none;stroke:var(--gold);stroke-width:1;opacity:.75;
-  filter:drop-shadow(0 0 10px rgba(232,192,125,.35))}
+  filter:drop-shadow(0 0 10px var(--sigil-glow))}
 .sigil .pupil{fill:var(--gold);stroke:none;animation:pulse 4s ease-in-out infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:.5;r:7}50%{opacity:1;r:10}}
 h1{
   font-family:var(--display);font-size:clamp(2rem,6vw,3.4rem);font-weight:400;
   margin:0 0 10px;letter-spacing:.04em;
-  background:linear-gradient(180deg,#fff8ea,var(--gold) 55%,#a9763a);
+  background:linear-gradient(180deg,var(--h1-from),var(--h1-mid) 55%,var(--h1-to));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  text-shadow:0 0 40px rgba(232,192,125,.18);
+  text-shadow:0 0 40px var(--h1-halo);
 }
 .tagline{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--muted);margin:0 auto;max-width:38ch}
 
@@ -74,18 +129,18 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
 .test-card{
   position:relative;text-align:left;cursor:pointer;color:inherit;font:inherit;
-  background:linear-gradient(160deg,rgba(45,27,78,.85),rgba(20,12,36,.9));
+  background:linear-gradient(160deg,var(--card-1),var(--card-2));
   border:1px solid var(--line);border-radius:var(--radius);
   padding:26px 22px 24px;overflow:hidden;
   transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 }
 .test-card::after{
-  content:"";position:absolute;inset:6px;border:1px solid rgba(232,192,125,.14);
+  content:"";position:absolute;inset:6px;border:1px solid var(--card-line-inner);
   border-radius:14px;pointer-events:none;
 }
 .test-card:hover,.test-card:focus-visible{
   transform:translateY(-6px);border-color:var(--gold);
-  box-shadow:0 18px 40px -18px var(--violet-glow),0 0 0 1px rgba(232,192,125,.25) inset;
+  box-shadow:0 18px 40px -18px var(--violet-glow),0 0 0 1px var(--card-line-hover) inset;
   outline:none;
 }
 .test-card .icon{font-size:2.2rem;display:block;margin-bottom:12px;filter:drop-shadow(0 0 12px var(--violet-glow))}
@@ -101,7 +156,7 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 .card{
   background:var(--card);backdrop-filter:blur(10px);
   border:1px solid var(--line);border-radius:var(--radius);
-  padding:34px 30px;box-shadow:0 30px 70px -40px #000,0 0 60px -30px var(--violet-glow);
+  padding:34px 30px;box-shadow:0 30px 70px -40px var(--shadow-deep),0 0 60px -30px var(--violet-glow);
 }
 
 /* ── Квіз ────────────────────────────────── */
@@ -109,15 +164,15 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 .quiz-name{font-family:var(--display);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft);font-size:.85rem;margin:0 0 14px}
 .moons{display:flex;justify-content:center;gap:10px}
 .moon{width:14px;height:14px;border-radius:50%;border:1px solid var(--gold);opacity:.4;transition:.3s}
-.moon.done{background:var(--gold);opacity:1;box-shadow:0 0 12px rgba(232,192,125,.6)}
+.moon.done{background:var(--gold);opacity:1;box-shadow:0 0 12px var(--moon-glow)}
 .moon.current{opacity:1;background:radial-gradient(circle at 30% 30%,var(--gold) 45%,transparent 46%);transform:scale(1.2)}
 
 .q-index{font-family:var(--serif);font-style:italic;color:var(--muted);margin:0 0 8px}
-.q-text{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,3.4vw,1.75rem);line-height:1.35;margin:0 0 26px;color:#fff8ea}
+.q-text{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,3.4vw,1.75rem);line-height:1.35;margin:0 0 26px;color:var(--q-ink)}
 .options{display:grid;gap:12px}
 .option{
   text-align:left;font:inherit;color:var(--ink);cursor:pointer;
-  background:rgba(255,255,255,.035);border:1px solid rgba(232,192,125,.18);
+  background:var(--option-bg);border:1px solid var(--option-line);
   border-radius:14px;padding:15px 18px 15px 50px;position:relative;
   transition:.25s ease;
 }
@@ -126,18 +181,18 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
   color:var(--violet);transition:.25s;
 }
 .option:hover,.option:focus-visible{
-  background:rgba(123,75,214,.18);border-color:var(--gold);transform:translateX(4px);outline:none;
+  background:var(--option-hover-bg);border-color:var(--gold);transform:translateX(4px);outline:none;
 }
 .option:hover::before,.option:focus-visible::before{color:var(--gold);transform:translateY(-50%) rotate(90deg)}
-.option.picked{background:rgba(232,192,125,.16);border-color:var(--gold)}
+.option.picked{background:var(--option-picked-bg);border-color:var(--gold)}
 
 /* ── Результат ───────────────────────────── */
 .result-card{text-align:center;max-width:680px;margin:0 auto}
 .orb{
   width:120px;height:120px;margin:0 auto 20px;border-radius:50%;
   display:grid;place-items:center;font-size:3rem;
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(123,75,214,.5) 45%,rgba(20,10,40,.9));
-  box-shadow:0 0 60px var(--violet-glow),inset 0 0 30px rgba(255,255,255,.15);
+  background:radial-gradient(circle at 35% 30%,var(--orb-1),var(--orb-2) 45%,var(--orb-3));
+  box-shadow:0 0 60px var(--violet-glow),inset 0 0 30px var(--orb-inner);
   animation:float 6s ease-in-out infinite;
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -146,7 +201,7 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 .result-text{font-family:var(--serif);font-size:1.2rem;line-height:1.7;color:var(--ink);margin:0 0 24px}
 .scroll-note{
   border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:18px 10px;margin:0 0 22px;background:rgba(232,192,125,.05);border-radius:8px;
+  padding:18px 10px;margin:0 0 22px;background:var(--advice-bg);border-radius:8px;
 }
 .scroll-label{display:block;font-family:var(--display);letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;color:var(--gold);margin-bottom:8px}
 .scroll-note p{margin:0;font-family:var(--serif);font-style:italic;font-size:1.1rem}
@@ -157,24 +212,30 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 .result-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .rune-btn,.ghost-btn{font:inherit;cursor:pointer;border-radius:999px;padding:12px 26px;transition:.25s;letter-spacing:.05em}
 .rune-btn{
-  background:linear-gradient(180deg,var(--gold-soft),var(--gold));color:#2a1a06;border:none;font-weight:500;
-  box-shadow:0 10px 30px -12px rgba(232,192,125,.7);
+  background:linear-gradient(180deg,var(--btn-from),var(--btn-to));color:var(--btn-ink);border:none;font-weight:500;
+  box-shadow:0 10px 30px -12px var(--btn-shadow);
 }
-.rune-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(232,192,125,.85)}
+.rune-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px -10px var(--btn-shadow-hover)}
 .ghost-btn{background:transparent;color:var(--muted);border:1px solid var(--line)}
 .ghost-btn:hover{color:var(--ink);border-color:var(--gold)}
 .back-btn{display:inline-block;margin-bottom:6px;padding:8px 18px;font-size:.9rem}
+/* Перемикач теми — кругла кнопка в куті шапки, поверх сигіла не лізе */
+.theme-btn{
+  position:absolute;top:14px;right:16px;width:40px;height:40px;padding:0;
+  display:grid;place-items:center;font-size:17px;line-height:1;
+}
 
 footer{text-align:center;padding:20px 0 40px;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:.95rem}
 
 .toast{
   position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);
-  background:rgba(28,17,48,.95);border:1px solid var(--gold);color:var(--gold-soft);
+  background:var(--toast-bg);border:1px solid var(--gold);color:var(--toast-ink);
   padding:12px 22px;border-radius:999px;z-index:9;opacity:0;transition:.3s;pointer-events:none;
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
 @media (max-width:560px){
+  .theme-btn{top:8px;right:8px}
   .card{padding:26px 18px}
   .site-head{padding-top:36px}
   .option{padding-left:44px}

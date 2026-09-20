@@ -17,6 +17,39 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  /* ── Тема ──────────────────────────────── */
+  const THEME_KEY = "theme";
+  let onThemeChange = null; // сюди підписуються зорі, щоб перефарбуватися
+
+  /** Кольори зір беремо з CSS-змінних поточної теми: трійки RGB без прозорості. */
+  function starTone() {
+    const css = getComputedStyle(document.documentElement);
+    return {
+      gold: css.getPropertyValue("--star-gold").trim(),
+      pale: css.getPropertyValue("--star-pale").trim()
+    };
+  }
+
+  function applyTheme(name) {
+    document.documentElement.dataset.theme = name;
+    const btn = $("#theme-toggle");
+    const light = name === "light";
+    btn.textContent = light ? "☀️" : "🌙";
+    btn.setAttribute("aria-pressed", String(light));
+    btn.setAttribute("aria-label", light ? "Увімкнути темну тему" : "Увімкнути світлу тему");
+    if (onThemeChange) onThemeChange();
+  }
+
+  function toggleTheme() {
+    const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      // приватний режим — тему міняємо, але не памʼятаємо
+    }
+    applyTheme(next);
+  }
+
   /* ── Головна ───────────────────────────── */
   function renderHome() {
     const grid = $("#test-grid");
@@ -174,6 +207,7 @@
     if (action === "home") renderHome();
     if (action === "retry") startTest(state.test);
     if (action === "copy") copyResult();
+    if (action === "theme") toggleTheme();
   });
 
   /* ── Зоряне небо ───────────────────────── */
@@ -181,6 +215,8 @@
     const canvas = $("#stars");
     const ctx = canvas.getContext("2d");
     let stars = [];
+    let tone = starTone();
+    const still = matchMedia("(prefers-reduced-motion: reduce)");
 
     function resize() {
       const dpr = window.devicePixelRatio || 1;
@@ -198,6 +234,9 @@
         s: Math.random() * 0.012 + 0.003,
         gold: Math.random() > 0.82
       }));
+      // Зміна розміру скидає canvas. У статичному режимі кадрів, які його
+      // відновили б, не буде — тому малюємо небо одразу.
+      if (still.matches) drawStatic();
     }
 
     function draw() {
@@ -208,8 +247,8 @@
         ctx.beginPath();
         ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
         ctx.fillStyle = st.gold
-          ? `rgba(232,192,125,${alpha})`
-          : `rgba(233,226,255,${alpha * 0.8})`;
+          ? `rgba(${tone.gold},${alpha})`
+          : `rgba(${tone.pale},${alpha * 0.8})`;
         ctx.fill();
       });
       requestAnimationFrame(draw);
@@ -217,14 +256,23 @@
 
     resize();
     addEventListener("resize", resize);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) drawStatic();
-    else draw();
+
+    // Так само після зміни теми: нові кольори підхопити нема чому.
+    onThemeChange = () => {
+      tone = starTone();
+      if (still.matches) {
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        drawStatic();
+      }
+    };
+
+    if (!still.matches) draw(); // статичне небо вже намальовано в resize()
 
     function drawStatic() {
       stars.forEach((st) => {
         ctx.beginPath();
         ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
-        ctx.fillStyle = st.gold ? "rgba(232,192,125,.7)" : "rgba(233,226,255,.6)";
+        ctx.fillStyle = st.gold ? `rgba(${tone.gold},.7)` : `rgba(${tone.pale},.6)`;
         ctx.fill();
       });
     }
@@ -232,6 +280,7 @@
 
   /* ── Старт ─────────────────────────────── */
   $("#year").textContent = new Date().getFullYear();
+  applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
   renderHome();
   initStars();
 })();
