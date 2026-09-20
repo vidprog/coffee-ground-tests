@@ -226,6 +226,13 @@ main{max-width:960px;margin:0 auto;padding:24px 20px 60px}
 }
 
 footer{text-align:center;padding:20px 0 40px;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:.95rem}
+/* Правове застереження. Гротеск і прямий шрифт — щоб не читалося як частина жарту;
+   курсив підвалу тут доводиться скидати явно. */
+.legal{
+  max-width:640px;margin:10px auto 0;padding:0 18px;
+  font-family:var(--sans);font-style:normal;font-size:.8rem;line-height:1.6;
+  color:var(--muted);
+}
 
 .toast{
   position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);
