@@ -125,6 +125,9 @@
   }
 
   /* ── Результат ─────────────────────────── */
+
+  /** Усі результати показуємо в єдиному форматі «Ти — X». */
+  const resultTitle = (res) => `Ти — ${res.title}`;
   function renderResult() {
     const { test, scores } = state;
     const best = Object.keys(scores).reduce((a, b) =>
@@ -134,7 +137,7 @@
     state.result = res;
 
     $("#result-emoji").textContent = res.emoji;
-    $("#result-title").textContent = res.title;
+    $("#result-title").textContent = resultTitle(res);
     $("#result-text").textContent = res.text;
     $("#result-advice").textContent = res.advice;
 
@@ -155,7 +158,7 @@
     if (!result) return;
     const text =
       `☕ Тести на кавовій гущі — «${test.title}»\n\n` +
-      `${result.emoji} ${result.title}\n${result.text}\n\n` +
+      `${result.emoji} ${resultTitle(result)}\n${result.text}\n\n` +
       `Порада від Всесвіту: ${result.advice}`;
 
     const done = () => toast("Скопійовано ✦ тепер це твоя карма");
