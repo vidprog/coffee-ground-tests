@@ -8,6 +8,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Marcellus+SC&family=Manrope:wght@300;500&display=swap" rel="stylesheet">
+<script>
+  // Тему застосовуємо до першого малювання, інакше світла тема блимає темною.
+  try {
+    var saved = localStorage.getItem("theme");
+    document.documentElement.dataset.theme =
+      saved || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  } catch (e) {
+    document.documentElement.dataset.theme = "dark";
+  }
+</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
 </head>
@@ -16,6 +26,8 @@
 <div class="fog" aria-hidden="true"></div>
 
 <header class="site-head">
+  <button id="theme-toggle" class="ghost-btn theme-btn" data-action="theme"
+          aria-pressed="false" aria-label="Увімкнути світлу тему">🌙</button>
   <div class="sigil" aria-hidden="true">
     <svg viewBox="0 0 120 120">
       <circle cx="60" cy="60" r="52" />
