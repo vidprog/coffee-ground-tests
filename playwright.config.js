@@ -12,7 +12,12 @@ module.exports = defineConfig({
   use: {
     baseURL: "http://127.0.0.1:8000",
     screenshot: "only-on-failure",
-    trace: "retain-on-failure"
+    trace: "retain-on-failure",
+    // Без цього нескінченний rAF зоряного неба (app.js:245-257) крутиться
+    // в кожному браузерному контексті й під паралельністю провокує випадкові
+    // таймаути "element is not stable" (#9). app.js вимикає цей цикл саме
+    // за prefers-reduced-motion (app.js:272), тож емулюємо його тут.
+    reducedMotion: "reduce"
   },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
